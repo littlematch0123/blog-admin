@@ -28,7 +28,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://localhost:4000",
+      "target": "https://api.xiaohuochai.cc",
       "changeOrigin": true,
       "pathRewrite": {
         "^/api": ""
