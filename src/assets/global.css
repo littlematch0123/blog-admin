@@ -60,7 +60,7 @@ pre, code, pre tt {
 }
 
 /* 电脑端自定义滚动条 */
-@media all and (min-width: 910px) {
+@media all and (min-width: 900px) {
   ::-webkit-scrollbar {
     width: 6px;
   }
