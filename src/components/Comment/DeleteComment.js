@@ -11,10 +11,8 @@ class DeleteComment extends React.Component {
     const { commentId } = match.params
     const { BasePostUrl } = location.state
     deleteCommentAsync({ id: commentId }).then(() => {
-      console.log('000')
       history.push(`${BasePostUrl}/comments`)
     }, () => {
-      console.log(111)
       history.push(`${BasePostUrl}/comments`)
     })
   }

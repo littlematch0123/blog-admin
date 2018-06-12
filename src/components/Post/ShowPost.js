@@ -35,7 +35,6 @@ class ShowPost extends React.Component {
     const { post, match, commentsCount, likesCount, location } = this.props
     const { id } = match.params
     const { state } = location
-    console.log(this.props)
     if (post === null) return false
     const { titleDatas, title, text } = post
     return (
