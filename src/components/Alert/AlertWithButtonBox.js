@@ -6,10 +6,10 @@ import AlertInner from './AlertInner'
 
 const AlertWithButtonBox = ({ text, onConfirmClick, ...rest }) =>
   (
-    <AlertInner {...rest}>
+    <StyledAlertInner {...rest}>
       <Title>{text}</Title>
       <ButtonBox onConfirmClick={onConfirmClick} />
-    </AlertInner>
+    </StyledAlertInner>
   )
 
 AlertWithButtonBox.propTypes = {
@@ -19,6 +19,10 @@ AlertWithButtonBox.propTypes = {
 
 export default AlertWithButtonBox
 
+const StyledAlertInner = styled(AlertInner)`
+  z-index: 2;
+  margin-top: 200px;
+`
 const Title = styled.h2`
   padding: 10px;
   font-weight: bold;

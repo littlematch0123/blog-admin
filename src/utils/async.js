@@ -35,6 +35,9 @@ const async = ({ dispatch, url, method, data, headers, success, fail, doHideAler
     } else if (json.code === 3) {
       dispatch(showAlertText(json.message))
       dispatch(logout)
+      // 权限不足
+    } else if (json.code === 4) {
+      dispatch(showAlertText(json.message))
     }
   }).catch(() => {
     dispatch(showAlertText('服务器故障'))
