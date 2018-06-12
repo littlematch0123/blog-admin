@@ -8,6 +8,7 @@ import BaseFullScreen from '@/common/BaseFullScreen'
 import BaseInput from '@/common/BaseInput'
 import InputPassword from '@/common/InputPassword'
 import BaseButton from '@/common/BaseButton'
+import ButtonInverted from '@/common/ButtonInverted'
 import { DARK_COLOR } from '@/constants/Colors'
 import { loginAsync } from './module'
 
@@ -36,6 +37,10 @@ class Login extends React.Component {
     const { loginAsync } = this.props
     username && password && loginAsync({ username, password })
   }
+  onVisitorLogin = () => {
+    const { loginAsync } = this.props
+    loginAsync({ username: '测', password: '0' })
+  }
   render() {
     const { username, password, doShowPassword } = this.state
     return (
@@ -62,6 +67,7 @@ class Login extends React.Component {
             />
           </Box>
           <StyledButton onClick={this.onButtonClick}>登&nbsp;录</StyledButton>
+          <StyledButtonInverted onClick={this.onVisitorLogin}>游客登录</StyledButtonInverted>
           <Introduction>小火柴的蓝色理想</Introduction>
         </Inner>
       </StyledScreen>
@@ -133,4 +139,10 @@ const Introduction = styled.p`
   border-right: 1px solid;
   white-space: nowrap;
   animation: ${typing} 4s steps(9) infinite, ${caret} .5s steps(1) infinite;
+`
+
+const StyledButtonInverted = styled(ButtonInverted)`
+  text-align: right;
+  text-decoration: underline;
+  color: rgba(255, 255, 255, .4);
 `
