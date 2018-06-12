@@ -49,6 +49,7 @@ module.exports = {
     "no-unused-expressions": "off", // 允许使用未使用过的表达式，以此来支持a && a()的代码形式
     "jsx-a11y/anchor-is-valid": [ "error", { "components": [ "Link" ], "specialLink": [ "to" ]}], // 允许正常地使用Link
     "import/no-extraneous-dependencies": "off", //使用history/createBrowserHistory引入包时，不会报错
-    "no-console": "off" // 启用console控制台
+    "no-console": "off", // 启用console控制台,
+    "import/no-mutable-exports": "off" // 取消exports不允许使用var或let的限制
   }
 };

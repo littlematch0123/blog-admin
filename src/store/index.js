@@ -24,6 +24,11 @@ const rootReducer = combineReducers({
   qiniu,
   users
 })
-const store = createStore(rootReducer, applyMiddleware(thunk, logger))
+let store = null
+if (process.env.NODE_ENV === 'development') {
+  store = createStore(rootReducer, applyMiddleware(thunk, logger))
+} else {
+  store = createStore(rootReducer, applyMiddleware(thunk))
+}
 
 export default store
