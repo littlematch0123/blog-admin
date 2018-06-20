@@ -33,8 +33,11 @@ class CategoryItemList extends React.Component {
           <IconBox onClick={() => { history.push(url) }}><Back />{name}</IconBox>
           <IconBox onClick={() => { history.push(`/categories/${id}/add`) }}><Add />添加分类</IconBox>
         </Header>
-        {categories.map((t, i) =>
-          <CategoryItem data={t} index={i + 1} key={t._id} length={categories.length} />)}
+        <ul>
+          {categories.map((t, i) =>
+            <li key={t._id}><CategoryItem data={t} index={i + 1} length={categories.length} /></li>)}
+        </ul>
+
       </Wrap>
     )
   }

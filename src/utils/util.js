@@ -77,3 +77,16 @@ export const getCategoryNumbers = number => {
   }
   return resultArr
 }
+
+/**
+ * 函数节流
+ * @param {fn} function test(){}
+ * @return {fn} function test(){}
+ */
+export const throttle = (fn, wait = 100) => function func(...args) {
+  if (fn.timer) return
+  fn.timer = setTimeout(() => {
+    fn.apply(this, args)
+    fn.timer = null
+  }, wait)
+}

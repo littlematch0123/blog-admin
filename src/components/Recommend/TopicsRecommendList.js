@@ -11,8 +11,10 @@ const TopicsRecommendList = ({ categories }) =>
   (
     <Wrap>
       <BaseBack onClick={() => { history.push('/recommends') }}>返回</BaseBack>
-      {categories.map((t, i) =>
-        <TopicRecommendItem key={t._id} data={t} datas={categories} index={i + 1} />)}
+      <ul>
+        {categories.map((t, i) =>
+          <li key={t._id}><TopicRecommendItem data={t} datas={categories} index={i + 1} /></li>)}
+      </ul>
     </Wrap>
   )
 TopicsRecommendList.propTypes = {

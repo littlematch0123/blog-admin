@@ -49,11 +49,11 @@ class ShowPost extends React.Component {
             <Control onClick={() => { history.push(`/posts/${id}/comments`) }}><Comment /><br />评论 {commentsCount}</Control>
           </ControlBox>
         </Header>
-        <Main>
+        <Article>
           <BaseTitle>{title}</BaseTitle>
           {!!titleDatas && <StyledCrumb datas={titleDatas} />}
           <BaseArticle text={text} />
-        </Main>
+        </Article>
       </StyledScreen>
     )
   }
@@ -118,7 +118,7 @@ const Control = styled.li`
   padding: 0 10px;
   cursor: pointer;
 `
-const Main = styled.main`
+const Article = styled.article`
   display: flex;
   flex-flow: column;
   box-sizing: border-box;

@@ -7,10 +7,11 @@ import BaseMask from '@/common/BaseMask'
 import BaseInput from '@/common/BaseInput'
 import { Search, Clear } from '@/common/BaseImg'
 import { PRIMARY_LINE_COLOR, DARK_BG_COLOR } from '@/constants/Colors'
+import { throttle } from '@/utils/util'
 
 class BaseSearchBox extends React.Component {
   static getReg(searchText) {
-    return new RegExp(searchText.replace(/[[(){}^$|?*+.-\\]/g, '\\$&'), 'ig')
+    return new RegExp(searchText.replace(/[[(){}^$|?*+.\\-]/g, '\\$&'), 'ig')
   }
   constructor(props) {
     super(props)
@@ -33,13 +34,17 @@ class BaseSearchBox extends React.Component {
     }
   }
   componentDidMount() {
-    this.scrollRef.current.addEventListener('scroll', e => {
-      const { scrollTop, offsetHeight, scrollHeight } = e.target
-      if (scrollTop + offsetHeight === scrollHeight) {
-        const { doNeedMoreDatas } = this.state
-        doNeedMoreDatas && this.loadMore()
-      }
-    })
+    this.scrollRef.current.addEventListener('scroll', throttle(this.onScroll))
+  }
+  componentWillUnmount() {
+    this.scrollRef.current.removeEventListener('scroll', throttle(this.onScroll))
+  }
+  onScroll = e => {
+    const { scrollTop, offsetHeight, scrollHeight } = e.target
+    if (scrollTop + offsetHeight === scrollHeight) {
+      const { doNeedMoreDatas } = this.state
+      doNeedMoreDatas && this.loadMore()
+    }
   }
   onClear = () => {
     this.onInitial()
@@ -154,13 +159,13 @@ const StyledBack = styled(BaseBack)`
   position: relative;
   margin: 10px;
 `
-const Inner = styled.div`
+const Inner = styled.section`
   position: relative;
   height: calc(100% - 100px);
   padding: 10px;
   background: rgba(255, 255, 255, .1);
 `
-const SearchBox = styled.div`
+const SearchBox = styled.header`
   display: flex;
   height: 30px;
   margin: 10px 0;

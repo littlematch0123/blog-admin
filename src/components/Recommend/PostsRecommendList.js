@@ -11,7 +11,10 @@ const PostsRecommendList = ({ posts }) =>
   (
     <Wrap>
       <BaseBack onClick={() => { history.push('/recommends') }}>返回</BaseBack>
-      {posts.map((t, i) => <PostRecommendItem key={t._id} data={t} datas={posts} index={i + 1} />)}
+      <ul>
+        {posts.map((t, i) =>
+          <li key={t._id}><PostRecommendItem data={t} datas={posts} index={i + 1} /></li>)}
+      </ul>
     </Wrap>
   )
 PostsRecommendList.propTypes = {

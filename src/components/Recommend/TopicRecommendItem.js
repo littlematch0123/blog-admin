@@ -165,7 +165,7 @@ const Des = styled.dd`
   font-size: 1em;
   text-indent: 1em;
 `
-const SelectorBox = styled.div`
+const SelectorBox = styled.section`
   position: fixed;
   z-index: 1;
   top: 0;
@@ -182,7 +182,7 @@ const StyledSelector = styled(LinkageSelector)`
 const StyledScreen = styled(BaseFullScreen)`
   z-index: 1;
 `
-const IndexChangeBox = styled.div`
+const IndexChangeBox = styled.nav`
   position: relative;
   display: flex;
   justify-content: space-between;

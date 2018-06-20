@@ -36,7 +36,7 @@ const mapStateToProps = state => ({ wrapHeight: getWrapHeight(state) })
 
 export default connect(mapStateToProps)(Home)
 
-const Inner = styled.div`
+const Inner = styled.main`
   height: calc(100% - 100px);
   background: ${PRIMARY_BG_COLOR};
 `

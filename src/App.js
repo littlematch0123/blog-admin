@@ -11,6 +11,7 @@ import history from '@/utils/history'
 import { setWrapSize, getWrapHeight, getWrapWidth } from '@/components/Size/module'
 import { getDoShowLoading, getAlertText, hideAlertText } from '@/components/Alert/module'
 import { CLIENT_URL } from '@/constants/API'
+import { throttle } from '@/utils/util'
 
 class App extends React.Component {
   constructor(props) {
@@ -24,28 +25,26 @@ class App extends React.Component {
     const { clientHeight, clientWidth } = document.documentElement
     setWrapSize({ clientHeight, clientWidth })
     window.addEventListener('orientationchange', this.setSize)
-    window.addEventListener('devicemotion', this.testShake)
+    window.addEventListener('devicemotion', throttle(this.testShake))
   }
   componentWillUnmount() {
     window.removeEventListener('orientationchange', this.setSize)
-    window.removeEventListener('devicemotion', this.testShake)
+    window.removeEventListener('devicemotion', throttle(this.testShake))
   }
   setSize = () => {
     const { setWrapSize, wrapHeight, wrapWidth } = this.props
     setWrapSize({ clientHeight: wrapWidth, clientWidth: wrapHeight })
   }
   testShake = e => {
-    requestAnimationFrame(() => {
-      const { x, y, z } = e.accelerationIncludingGravity
-      const { lastX, lastY, lastZ } = this
-      const nowRange = Math.abs(lastX - x) + Math.abs(lastY - y) + Math.abs(lastZ - z)
-      if (nowRange > 80) {
-        window.location.href = CLIENT_URL
-      }
-      this.lastX = x
-      this.lastY = y
-      this.lastZ = z
-    })
+    const { x, y, z } = e.accelerationIncludingGravity
+    const { lastX, lastY, lastZ } = this
+    const nowRange = Math.abs(lastX - x) + Math.abs(lastY - y) + Math.abs(lastZ - z)
+    if (nowRange > 80) {
+      window.location.href = CLIENT_URL
+    }
+    this.lastX = x
+    this.lastY = y
+    this.lastZ = z
   }
   render() {
     const { doShowLoading, alertText, hideAlertText } = this.props

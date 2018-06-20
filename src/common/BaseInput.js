@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { PRIMARY_COLOR } from '@/constants/Colors'
 
 const BaseInput = ({ value, onChange, ...rest }) =>
-  <Input {...rest} value={value} onChange={onChange} />
+  <Input {...rest} value={value} onChange={onChange} autoComplete="off" />
 
 BaseInput.propTypes = {
   onChange: PropTypes.func.isRequired,

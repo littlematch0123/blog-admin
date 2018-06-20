@@ -70,7 +70,7 @@ BaseSwipeItem.defaultProps = {
 }
 export default BaseSwipeItem
 
-const Wrap = styled.div`
+const Wrap = styled.section`
   position: relative;
   width: 80%;
   max-width: 300px;

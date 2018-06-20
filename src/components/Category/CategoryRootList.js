@@ -6,7 +6,7 @@ import CategoryItem from './CategoryItem'
 import { getRootCategories } from './module'
 
 const CategoryRootList = ({ rootCategories }) =>
-  <Wrap>{rootCategories.map((t, i) => <CategoryItem data={t} index={i + 1} key={t._id} />)}</Wrap>
+  <Wrap>{rootCategories.map((t, i) => <li key={t._id}><CategoryItem data={t} index={i + 1} /></li>)}</Wrap>
 
 CategoryRootList.propTypes = {
   rootCategories: PropTypes.arrayOf(PropTypes.object)
@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
 })
 export default connect(mapStateToProps)(CategoryRootList)
 
-const Wrap = styled.section`
+const Wrap = styled.ul`
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;

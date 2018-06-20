@@ -17,6 +17,8 @@ const InputPassword = ({
   (
     <Wrap className={className} {...rest} >
       <StyledInput
+        autoComplete={doShowPassword ? 'new-password' : 'off'}
+        id="password"
         textIndent={textIndent}
         color={color}
         value={value}

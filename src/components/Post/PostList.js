@@ -102,7 +102,7 @@ const Wrap = styled.section`
   overflow: hidden;
   line-height: 40px;
 `
-const TypeBox = styled.div`
+const TypeBox = styled.section`
   display: flex;
   align-items: center;
   border-bottom: 2px solid ${DARK_LINE_COLOR};
@@ -147,7 +147,7 @@ const Item = styled.li`
     content: '';
   }
 `
-const SelectorBox = styled.div`
+const SelectorBox = styled.section`
   position: fixed;
   top: 0;
   bottom: 0;

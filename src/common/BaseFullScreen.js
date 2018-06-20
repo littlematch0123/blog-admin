@@ -21,7 +21,7 @@ const mapStateToProps = state => ({ wrapHeight: getWrapHeight(state) })
 
 export default connect(mapStateToProps)(BaseFullScreen)
 
-const Wrap = styled.div`
+const Wrap = styled.section`
   position: fixed;
   top: 0;
   bottom: 0;

@@ -110,7 +110,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { updateUserAsync })(UserList)
 
 
-const Wrap = styled.div`
+const Wrap = styled.section`
   box-sizing: border-box;
   height: 100%;
   padding: 10px;

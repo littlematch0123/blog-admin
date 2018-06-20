@@ -56,6 +56,6 @@ const Title = styled.h2`
   font-size: 1.1em;
   color: rgba(0, 0, 0, .8);
 `
-const Count = styled.div`
+const Count = styled.span`
   color: rgba(0, 0, 0, .7);
 `

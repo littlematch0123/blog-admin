@@ -15,16 +15,17 @@ class PostRecommendItem extends React.Component {
   static getDerivedStateFromProps(nextProps) {
     const { data, datas } = nextProps
     return {
-      doShowIndexChangeBox: false,
-      doShowSearchBox: false,
+      datas,
       data,
-      prevData: data,
-      datas
+      prevData: data
     }
   }
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      doShowIndexChangeBox: false,
+      doShowSearchBox: false
+    }
   }
   onInput = data => {
     this.setState({ doShowSearchBox: false })
@@ -135,7 +136,7 @@ const StyledSwipeItem = styled(BaseSwipeItem)`
   background-size: cover;
   background-repeat: no-repeat;
 `
-const Title = styled.dt`
+const Title = styled.p`
   position: relative;
   box-sizing: border-box;
   width: 100%;
@@ -147,7 +148,7 @@ const Title = styled.dt`
   background-color: rgba(0, 0, 0, .3);
   cursor: pointer;
 `
-const Type = styled.dd`
+const Type = styled.span`
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -158,7 +159,7 @@ const Type = styled.dd`
   line-height: 1.5;
   background: ${TRANSPARENT_BG_COLOR};
 `
-const IndexChangeBox = styled.div`
+const IndexChangeBox = styled.nav`
   position: relative;
   display: flex;
   justify-content: space-between;

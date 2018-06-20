@@ -48,26 +48,29 @@ class Login extends React.Component {
         <Inner onKeyUp={this.onEnter}>
           <Logo height="60" width="60" />
           <BaseTitle>后台博客管理系统</BaseTitle>
-          <Box>
-            <Label>用户名：</Label>
-            <StyledInput
-              value={username}
-              onChange={e => { this.setState({ username: e.target.value }) }}
-            />
-          </Box>
-          <Box>
-            <Label>&nbsp;密&nbsp;&nbsp;码&nbsp;：</Label>
-            <InputPassword
-              color="rgba(255, 255, 255, 0.4);"
-              textIndent="3em"
-              value={password}
-              onChange={e => { this.setState({ password: e.target.value }) }}
-              doShowPassword={doShowPassword}
-              onChangeStatus={this.onChangeStatus}
-            />
-          </Box>
-          <StyledButton onClick={this.onButtonClick}>登&nbsp;录</StyledButton>
-          <StyledButtonInverted onClick={this.onVisitorLogin}>游客登录</StyledButtonInverted>
+          <form onSubmit={e => { e.preventDefault() }}>
+            <Box>
+              <Label htmlFor="username">用户名：</Label>
+              <StyledInput
+                id="username"
+                value={username}
+                onChange={e => { this.setState({ username: e.target.value }) }}
+              />
+            </Box>
+            <Box>
+              <Label htmlFor="password">&nbsp;密&nbsp;&nbsp;码&nbsp;：</Label>
+              <InputPassword
+                color="rgba(255, 255, 255, 0.4);"
+                textIndent="3em"
+                value={password}
+                onChange={e => { this.setState({ password: e.target.value }) }}
+                doShowPassword={doShowPassword}
+                onChangeStatus={this.onChangeStatus}
+              />
+            </Box>
+            <StyledButton onClick={this.onButtonClick}>登&nbsp;录</StyledButton>
+            <StyledButtonInverted onClick={this.onVisitorLogin}>游客登录</StyledButtonInverted>
+          </form>
           <Introduction>小火柴的蓝色理想</Introduction>
         </Inner>
       </StyledScreen>
@@ -87,7 +90,7 @@ const StyledScreen = styled(BaseFullScreen)`
   background-color: ${DARK_COLOR};
 `
 
-const Inner = styled.div`
+const Inner = styled.main`
   position: relative;
   box-sizing: border-box;
   width: 80%;
