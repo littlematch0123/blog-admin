@@ -24,7 +24,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
-    "eject": "react-app eject",
+    "eject": "react-scripts eject",
     "lintcss": "stylelint 'src/**/*.js'"
   },
   "proxy": {
