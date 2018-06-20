@@ -1,4 +1,5 @@
 module.exports = {
+  "parser":"babel-eslint",
   // 指定校验的ECMAScript的版本及特性
   "parserOptions": {
     "ecmaVersion": 7, // ECMAScript版本，7为ES7
@@ -49,7 +50,8 @@ module.exports = {
     "no-unused-expressions": "off", // 允许使用未使用过的表达式，以此来支持a && a()的代码形式
     "jsx-a11y/anchor-is-valid": [ "error", { "components": [ "Link" ], "specialLink": [ "to" ]}], // 允许正常地使用Link
     "import/no-extraneous-dependencies": "off", //使用history/createBrowserHistory引入包时，不会报错
-    "no-console": "off", // 启用console控制台,
-    "import/no-mutable-exports": "off" // 取消exports不允许使用var或let的限制
+    "no-console": "off", // 启用console控制台
+    "import/no-mutable-exports": "off", // 取消exports不允许使用var或let的限制
+    "max-len": "off" // 取消行的最大长度的验证，使SVG不用重新调整格式
   }
 };
