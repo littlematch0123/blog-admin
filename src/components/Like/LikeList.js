@@ -10,7 +10,7 @@ import BaseAvatar from '@/common/BaseAvatar'
 import { ERROR_COLOR } from '@/constants/Colors'
 import { getLikesByFilter, setLikesFilter } from './module'
 
-class CommentList extends React.Component {
+class LikeList extends React.Component {
   static getDerivedStateFromProps(nextProps) {
     const { setLikesFilter, match } = nextProps
     setLikesFilter(match.params.postId)
@@ -29,25 +29,25 @@ class CommentList extends React.Component {
         <BaseBack onClick={() => { history.push(BasePostUrl) }}>返回文章</BaseBack>
         <Inner>
           <BaseTitle>点赞列表</BaseTitle>
-          <CommentBox>
-            {likes.map((t, i) => (
-              <CommentItem key={t._id}>
+          <LikeBox>
+            {likes.length === 0 ? '暂无点赞' : likes.map((t, i) => (
+              <LikeItem key={t._id}>
                 <AvatarBox>
                   {t.user ? <BaseAvatar>{t.user.username}</BaseAvatar>
                     : <StyledAvatar>删</StyledAvatar>}
                   <Time>{new Date(t.createdAt).toLocaleDateString()}</Time>
                 </AvatarBox>
                 <Floor>第{i + 1}赞</Floor>
-              </CommentItem>
+              </LikeItem>
             ))}
-          </CommentBox>
+          </LikeBox>
         </Inner>
       </StyledScreen>
     )
   }
 }
 
-CommentList.propTypes = {
+LikeList.propTypes = {
   likes: PropTypes.arrayOf(PropTypes.object),
   match: PropTypes.shape({
     exact: PropTypes.bool,
@@ -56,13 +56,13 @@ CommentList.propTypes = {
     url: PropTypes.string
   }).isRequired
 }
-CommentList.defaultProps = {
+LikeList.defaultProps = {
   likes: null
 }
 const mapStateToProps = state => ({
   likes: getLikesByFilter(state)
 })
-export default connect(mapStateToProps, { setLikesFilter })(CommentList)
+export default connect(mapStateToProps, { setLikesFilter })(LikeList)
 
 const StyledScreen = styled(BaseFullScreen)`
   padding: 10px;
@@ -82,10 +82,10 @@ const Inner = styled.div`
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12);
   cursor: default;
 `
-const CommentBox = styled.ul`
+const LikeBox = styled.ul`
   overflow-y: auto;
 `
-const CommentItem = styled.li`
+const LikeItem = styled.li`
   position: relative;
   display: flex;
   justify-content: space-between;

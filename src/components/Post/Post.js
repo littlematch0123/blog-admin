@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Comment from '@/components/Comment/Comment'
-import Like from '@/components/Like/Like'
+import LikeList from '@/components/Like/LikeList'
 import PostList from './PostList'
 import ShowPost from './ShowPost'
 import AddPost from './AddPost'
@@ -21,7 +21,7 @@ const Post = () =>
       <Route path="/posts/:id/uploadimg" component={UploadImgPost} />
       <Route path="/posts/:id/delete" component={DeletePost} />
       <Route path="/posts/:postId/comments" component={Comment} />
-      <Route path="/posts/:postId/likes" component={Like} />
+      <Route path="/posts/:postId/likes" component={LikeList} />
     </Switch>
   )
 
