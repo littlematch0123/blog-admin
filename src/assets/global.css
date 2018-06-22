@@ -19,6 +19,7 @@ ol,ul {
 fieldset, img {
   border: 0;
 }
+
 summary{
   outline: none;
 }
@@ -28,7 +29,6 @@ body, button, input, select, textarea {
   font: 12px/1.2 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
 }
 
-/* 电脑端初始字体大小为16px */
 @media all and (min-width: 900px) {
   body, button, input, select, textarea {
     font-size: 14px;
