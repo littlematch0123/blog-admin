@@ -9,7 +9,6 @@ import BaseInput from '@/common/BaseInput'
 import InputPassword from '@/common/InputPassword'
 import BaseButton from '@/common/BaseButton'
 import ButtonInverted from '@/common/ButtonInverted'
-import { DARK_COLOR } from '@/constants/Colors'
 import { loginAsync } from './module'
 
 class Login extends React.Component {
@@ -44,10 +43,10 @@ class Login extends React.Component {
   render() {
     const { username, password, doShowPassword } = this.state
     return (
-      <StyledScreen>
+      <StyledScreen backgroundImage={`url(${require('@/assets/login_bg.jpg')})`} >
         <Inner onKeyUp={this.onEnter}>
           <Logo height="60" width="60" />
-          <BaseTitle>后台博客管理系统</BaseTitle>
+          <BaseTitle>博客后台管理系统</BaseTitle>
           <form onSubmit={e => { e.preventDefault() }}>
             <Box>
               <Label htmlFor="username">用户名：</Label>
@@ -58,9 +57,8 @@ class Login extends React.Component {
               />
             </Box>
             <Box>
-              <Label htmlFor="password">&nbsp;密&nbsp;&nbsp;码&nbsp;：</Label>
+              <Label htmlFor="password">&emsp;密码：</Label>
               <InputPassword
-                color="rgba(255, 255, 255, 0.4);"
                 textIndent="3em"
                 value={password}
                 onChange={e => { this.setState({ password: e.target.value }) }}
@@ -87,7 +85,7 @@ const StyledScreen = styled(BaseFullScreen)`
   justify-content: center;
   align-items: center;
   font-size: 1.1em;
-  background-color: ${DARK_COLOR};
+  background-size: cover;
 `
 
 const Inner = styled.main`
@@ -100,29 +98,31 @@ const Inner = styled.main`
   padding: 20px;
   border-radius: 6px;
   text-align: center;
-  color: rgba(255, 255, 255, .4);
-  background-color: rgba(255, 255, 255, .1);
+  color: #fff;
+  background-color: rgba(0, 0, 0, .2);
 `
+
 const StyledInput = styled(BaseInput)`
   margin: 10px 0;
   text-indent: 3em;
-  color: rgba(255, 255, 255, .4);
-  background: none;
 `
+
 const StyledButton = styled(BaseButton)`
   width: 84%;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 20px auto 10px;
 `
 const Box = styled.div`
   position: relative;
 `
+
 const Label = styled.label`
   position: absolute;
   top: 50%;
   left: 2px;
   transform: translateY(-50%);
 `
+
 const typing = keyframes`
   0% {width: 0;}
 `
@@ -147,5 +147,5 @@ const Introduction = styled.p`
 const StyledButtonInverted = styled(ButtonInverted)`
   text-align: right;
   text-decoration: underline;
-  color: rgba(255, 255, 255, .4);
+  color: rgba(255, 255, 255, .8);
 `

@@ -154,6 +154,9 @@ export default BaseSearchBox
 const StyledScreen = styled(BaseFullScreen)`
   z-index: 1;
   background: #fff;
+  & ::placeholder {
+    color: #fff;
+  }
 `
 const StyledBack = styled(BaseBack)`
   position: relative;

@@ -124,8 +124,8 @@ const Wrap = styled.div`
   vertical-align: middle;
 `
 const Table = styled.table`
+  table-layout: fixed;
   width: 100%;
-  table-layout:fixed;
 `
 const BaseTable = Table.extend`
   line-height: 30px;

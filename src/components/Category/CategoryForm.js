@@ -82,7 +82,7 @@ class CategoryForm extends React.Component {
             onChange={e => this.setState({ description: e.target.value })}
             placeholder="描述"
           />
-          <ButtonBox onConfirmClick={this.onConfirmClick} />
+          <ButtonBox onConfirmClick={this.onConfirmClick} cancelColor="#fff" />
         </Inner>
       </BaseFullScreen>
     )

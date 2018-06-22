@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { getWrapHeight } from '@/components/Size/module'
 
-const BaseFullScreen = ({ className, children, wrapHeight }) =>
-  <Wrap className={className} style={{ height: `${wrapHeight}px` }}>{children}</Wrap>
+const BaseFullScreen = ({ className, children, wrapHeight, ...rest }) =>
+  <Wrap className={className} style={{ height: `${wrapHeight}px` }} {...rest}>{children}</Wrap>
 
 BaseFullScreen.propTypes = {
   className: PropTypes.string,
@@ -29,4 +29,5 @@ const Wrap = styled.section`
   right: 0;
   box-sizing: border-box;
   margin: 0 auto;
+  background-image: ${props => props.backgroundImage};
 `

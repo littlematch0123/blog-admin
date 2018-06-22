@@ -64,7 +64,7 @@ class CommentList extends React.Component {
         <Inner>
           <BaseTitle>评论列表</BaseTitle>
           <CommentBox>
-            {comments.map((t, i) => (
+            {comments.length === 0 ? '暂无评论' : comments.map((t, i) => (
               <CommentItem key={t._id}>
                 <ItemHeader>
                   <AvatarBox>

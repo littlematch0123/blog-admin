@@ -2,14 +2,11 @@
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-html {
-  -webkit-text-size-adjust: 100%;
-  text-rendering: optimizelegibility;
-  -webkit-font-smoothing: antialiased;
-}
 body{
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+
 /* 格式化边距及边框 */
 body,p,h1,h2,h3,h4,dl,dd,figure {
   margin: 0;
@@ -19,43 +16,46 @@ ol,ul {
   padding: 0;
   list-style: none;
 }
-input, button {
-  padding: 0;
-  border: none;
-}
 fieldset, img {
   border: 0;
 }
 summary{
   outline: none;
 }
+
 /* 要注意表单元素并不继承父级 font 的问题 */
 body, button, input, select, textarea {
   font: 12px/1.2 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
 }
+
 /* 电脑端初始字体大小为16px */
 @media all and (min-width: 900px) {
   body, button, input, select, textarea {
     font-size: 14px;
   }
 }
+
 /* 去掉各Table cell 的边距并让其边重合 */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 /* 默认不显示下划线，保持页面简洁 */
 a {
   color: inherit;
   text-decoration: none;
 }
+
 /* 表单格式化 */
-input {
+input, button, textarea {
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
   -webkit-appearance: none;
 }
-button {
-  background: none;
-}
+
 /* 代码片断 */
 pre, code, pre tt {
   font-family: Courier, 'Courier New', monospace;

@@ -90,7 +90,6 @@ const Wrap = styled.div`
   background: ${PRIMARY_BG_COLOR};
 `
 const List = styled.ul`
-  line-height: 0px;
   line-height: 40px;
   text-align: center;
   column-count: 2;

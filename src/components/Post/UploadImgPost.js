@@ -98,7 +98,7 @@ class UploadImgPost extends React.Component {
         <Inner>
           <StyledInput type="file" innerRef={this.fileRef} onChange={e => this.onFileChange(e)} />
           <Item onClick={this.onItemClick} style={{ backgroundImage: `url(${imgUrl})` }}>{text}</Item>
-          <ButtonBox onConfirmClick={this.onSubmit} />
+          <ButtonBox onConfirmClick={this.onSubmit} cancelColor="#fff" />
         </Inner>
       </BaseFullScreen>
     )

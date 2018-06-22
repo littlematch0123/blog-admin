@@ -52,6 +52,7 @@ module.exports = {
     "import/no-extraneous-dependencies": "off", //使用history/createBrowserHistory引入包时，不会报错
     "no-console": "off", // 启用console控制台
     "import/no-mutable-exports": "off", // 取消exports不允许使用var或let的限制
-    "max-len": "off" // 取消行的最大长度的验证，使SVG不用重新调整格式
+    "max-len": "off", // 取消行的最大长度的验证，使SVG不用重新调整格式
+    "global-require": "off" // 允许在语句中使用require，从而可以正确加载图片路径
   }
 };
