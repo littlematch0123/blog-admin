@@ -70,7 +70,7 @@ class UploadImgPost extends React.Component {
   onItemClick = () => {
     this.fileRef.current.click()
   }
-  fileChange = e => {
+  onFileChange = e => {
     const file = e.target.files[0]
     const { showAlertText, showLoading, hideLoading } = this.props
     // 如果一个文件被选中
@@ -96,7 +96,7 @@ class UploadImgPost extends React.Component {
       <BaseFullScreen>
         <BaseMask />
         <Inner>
-          <StyledInput type="file" innerRef={this.fileRef} onChange={e => this.fileChange(e)} />
+          <StyledInput type="file" innerRef={this.fileRef} onChange={e => this.onFileChange(e)} />
           <Item onClick={this.onItemClick} style={{ backgroundImage: `url(${imgUrl})` }}>{text}</Item>
           <ButtonBox onConfirmClick={this.onSubmit} />
         </Inner>

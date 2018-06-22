@@ -9,9 +9,11 @@ import { loadPostsAsync, getPosts } from '@/components/Post/PostsModule'
 import { loadLikesAsync, getLikes } from '@/components/Like/module'
 import { loadCommentsAsync, getComments } from '@/components/Comment/module'
 import { loadUsersAsync, getUsers } from '@/components/User/module'
+import { loginByStorage, getUserId } from '@/components/Auth/module'
 import { DARK_BG_COLOR } from '@/constants/Colors'
 import history from '@/utils/history'
 import HomeMenuList from './HomeMenuList'
+
 
 class HomeHeader extends React.Component {
   constructor(props) {
@@ -25,17 +27,20 @@ class HomeHeader extends React.Component {
       loadLikesAsync,
       loadCommentsAsync,
       loadUsersAsync,
+      loginByStorage,
       categories,
       posts,
       likes,
       comments,
-      users
+      users,
+      userId
     } = this.props
     !categories.length && loadCategoriesAsync()
     !posts.length && loadPostsAsync()
     !likes.length && loadLikesAsync()
     !comments.length && loadCommentsAsync()
     !users.length && loadUsersAsync()
+    !userId && loginByStorage()
   }
   onChangeStatus = () => {
     this.setState(prevState => ({ doShowMenuList: !prevState.doShowMenuList }))
@@ -63,25 +68,32 @@ HomeHeader.propTypes = {
   loadLikesAsync: PropTypes.func.isRequired,
   loadCommentsAsync: PropTypes.func.isRequired,
   loadUsersAsync: PropTypes.func.isRequired,
+  loginByStorage: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   likes: PropTypes.arrayOf(PropTypes.object).isRequired,
   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
-  users: PropTypes.arrayOf(PropTypes.object).isRequired
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  userId: PropTypes.string
+}
+HomeHeader.defaultProps = {
+  userId: null
 }
 const mapStateToProps = state => ({
   categories: getCategories(state),
   posts: getPosts(state),
   likes: getLikes(state),
   comments: getComments(state),
-  users: getUsers(state)
+  users: getUsers(state),
+  userId: getUserId(state)
 })
 export default connect(mapStateToProps, {
   loadCategoriesAsync,
   loadPostsAsync,
   loadLikesAsync,
   loadCommentsAsync,
-  loadUsersAsync
+  loadUsersAsync,
+  loginByStorage
 })(HomeHeader)
 
 const Header = styled.header`

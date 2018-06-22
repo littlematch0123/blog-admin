@@ -9,6 +9,7 @@ import BaseTitle from '@/common/BaseTitle'
 import BaseAvatar from '@/common/BaseAvatar'
 import ButtonWithAutoWidth from '@/common/ButtonWithAutoWidth'
 import { ERROR_COLOR } from '@/constants/Colors'
+import { Add } from '@/common/BaseImg'
 import { getCommentsByFilter, setCommentsFilter } from './module'
 
 class CommentList extends React.Component {
@@ -21,30 +22,62 @@ class CommentList extends React.Component {
     super(props)
     this.state = {}
   }
-  onDelete = (t, BasePostUrl) => {
-    history.push({ pathname: `${BasePostUrl}/comments/${t._id}/delete`, state: { BasePostUrl } })
+  onAddComment = BasePostUrl => {
+    const { location } = this.props
+    const { state } = location
+    if (state) {
+      history.push({ pathname: `${BasePostUrl}/comments/add`, state: { url: state.url } })
+    } else {
+      history.push({ pathname: `${BasePostUrl}/comments/add` })
+    }
+  }
+  onDeleteComment = (t, BasePostUrl) => {
+    const { location } = this.props
+    const { state } = location
+    if (state) {
+      history.push({ pathname: `${BasePostUrl}/comments/${t._id}/delete`, state: { url: state.url } })
+    } else {
+      history.push({ pathname: `${BasePostUrl}/comments/${t._id}/delete` })
+    }
+  }
+  onUpdateComment = (t, BasePostUrl) => {
+    const { location } = this.props
+    const { state } = location
+    if (state) {
+      history.push({ pathname: `${BasePostUrl}/comments/${t._id}/update`, state: { url: state.url, comment: t } })
+    } else {
+      history.push({ pathname: `${BasePostUrl}/comments/${t._id}/update`, state: { comment: t } })
+    }
   }
   render() {
-    const { comments, match } = this.props
+    const { comments, match, location } = this.props
+    const len = comments.length
+    const { state } = location
     const { postId } = match.params
     const BasePostUrl = `/posts/${postId}`
     return (
       <StyledScreen>
-        <BaseBack onClick={() => { history.push(BasePostUrl) }}>返回文章</BaseBack>
+        <Header>
+          <BaseBack onClick={() => { state ? history.push(`${state.url}`) : history.push(BasePostUrl) }} />
+          <AddBox onClick={() => this.onAddComment(BasePostUrl)}><Add />添加评论</AddBox>
+        </Header>
         <Inner>
           <BaseTitle>评论列表</BaseTitle>
           <CommentBox>
             {comments.map((t, i) => (
               <CommentItem key={t._id}>
-                <Header>
+                <ItemHeader>
                   <AvatarBox>
                     {t.user ? <BaseAvatar>{t.user.username}</BaseAvatar>
                       : <StyledAvatar>删</StyledAvatar>}
                     <Time>{new Date(t.createdAt).toLocaleDateString()}</Time>
                   </AvatarBox>
-                  <StyledBtn onClick={() => this.onDelete(t, BasePostUrl)}>删除</StyledBtn>
-                  <Floor>{i + 1}楼</Floor>
-                </Header>
+                  <BtnBox>
+                    <StyledBtn onClick={() => this.onUpdateComment(t, BasePostUrl)}>编辑</StyledBtn>
+                    <StyledBtn onClick={() => this.onDeleteComment(t, BasePostUrl)}>删除</StyledBtn>
+                  </BtnBox>
+                  <Floor>{len - i}楼</Floor>
+                </ItemHeader>
                 <Paragraph>{t.content}</Paragraph>
               </CommentItem>
             ))}
@@ -62,6 +95,12 @@ CommentList.propTypes = {
     params: PropTypes.object,
     path: PropTypes.string,
     url: PropTypes.string
+  }).isRequired,
+  location: PropTypes.shape({
+    hash: PropTypes.string,
+    key: PropTypes.string,
+    path: PropTypes.string,
+    search: PropTypes.string
   }).isRequired
 }
 CommentList.defaultProps = {
@@ -75,6 +114,20 @@ export default connect(mapStateToProps, { setCommentsFilter })(CommentList)
 const StyledScreen = styled(BaseFullScreen)`
   padding: 10px;
   background: #eee;
+`
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  line-height: 30px;
+`
+const AddBox = styled.span`
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  & > svg {
+    margin-right: 6px;
+  }
 `
 const Inner = styled.div`
   display: flex;
@@ -98,7 +151,7 @@ const CommentItem = styled.li`
   padding-bottom: 10px;
   border-bottom: 2px dashed #eee;
 `
-const Header = styled.header`
+const ItemHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -107,6 +160,12 @@ const Header = styled.header`
 
 const StyledAvatar = styled(BaseAvatar)`
   background-color: ${ERROR_COLOR};
+`
+
+const BtnBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 const StyledBtn = styled(ButtonWithAutoWidth)`

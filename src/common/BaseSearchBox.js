@@ -47,10 +47,37 @@ class BaseSearchBox extends React.Component {
     }
   }
   onClear = () => {
-    this.onInitial()
+    this.initializeSearchBox()
     this.setState({ searchText: '' })
   }
-  onInitial() {
+  onSearchClick = () => {
+    this.startSearch()
+  }
+  onEnter = e => {
+    if (e.keyCode === 13) {
+      this.startSearch()
+    }
+  }
+  addDatas() {
+    const { filterDatas, limitNumber, page } = this.state
+    const limitDatas = filterDatas.slice(page * limitNumber, (page + 1) * limitNumber)
+    limitDatas.length < limitNumber && this.setState({ loadingText: '数据已经全部加载' })
+    const resultDatas = [...this.state.resultDatas, ...limitDatas]
+    resultDatas.length === filterDatas.length && this.setState({ doNeedMoreDatas: false })
+    this.setState({ limitDatas, resultDatas })
+  }
+  testResultIsEmpty() {
+    const { datas } = this.props
+    const { searchText } = this.state
+    const reg = BaseSearchBox.getReg(searchText)
+    const filterDatas = datas.filter(t => t.title.trim().match(reg))
+    if (filterDatas.length === 0) {
+      this.setState({ IsNoResult: true })
+    } else {
+      this.setState({ filterDatas }, () => { this.addDatas() })
+    }
+  }
+  initializeSearchBox() {
     this.setState({
       resultDatas: [],
       limitDatas: [],
@@ -60,45 +87,18 @@ class BaseSearchBox extends React.Component {
       doNeedMoreDatas: true
     })
   }
-  onSearchClick = () => {
-    this.onSearch()
-  }
-  onEnter = e => {
-    if (e.keyCode === 13) {
-      this.onSearch()
-    }
-  }
-  onSearch = () => {
-    this.onInitial()
-    this.props.datas && this.state.searchText && this.onTestResultIsEmpty()
-  }
-  onAddDatas() {
-    const { filterDatas, limitNumber, page } = this.state
-    const limitDatas = filterDatas.slice(page * limitNumber, (page + 1) * limitNumber)
-    limitDatas.length < limitNumber && this.setState({ loadingText: '数据已经全部加载' })
-    const resultDatas = [...this.state.resultDatas, ...limitDatas]
-    resultDatas.length === filterDatas.length && this.setState({ doNeedMoreDatas: false })
-    this.setState({ limitDatas, resultDatas })
-  }
-  onTestResultIsEmpty() {
-    const { datas } = this.props
-    const { searchText } = this.state
-    const reg = BaseSearchBox.getReg(searchText)
-    const filterDatas = datas.filter(t => t.title.trim().match(reg))
-    if (filterDatas.length === 0) {
-      this.setState({ IsNoResult: true })
-    } else {
-      this.setState({ filterDatas }, () => { this.onAddDatas() })
-    }
-  }
   loadMore() {
     const { page } = this.state
     this.setState({ doLoadingMore: true, page: page + 1 }, () => {
       setTimeout(() => {
-        this.onAddDatas()
+        this.addDatas()
         this.setState({ doLoadingMore: false })
       }, 1000)
     })
+  }
+  startSearch = () => {
+    this.initializeSearchBox()
+    this.props.datas && this.state.searchText && this.testResultIsEmpty()
   }
   render() {
     const {

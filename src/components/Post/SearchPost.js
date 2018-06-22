@@ -25,7 +25,6 @@ class SearchPost extends React.Component {
   }
 }
 
-
 SearchPost.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   location: PropTypes.shape({

@@ -1,4 +1,9 @@
-const API_HOSTNAME = '/api'
+let API_HOSTNAME
+if (process.env.NODE_ENV === 'development') {
+  API_HOSTNAME = '/local'
+} else {
+  API_HOSTNAME = '/api'
+}
 
 export const BASE_AUTH_URL = `${API_HOSTNAME}/auth/admin`
 export const BASE_USER_URL = `${API_HOSTNAME}/users`

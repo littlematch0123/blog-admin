@@ -36,6 +36,17 @@ export const loginAsync = data => dispatch => new Promise((resolve, reject) => {
     }
   })
 })
+export const loginByStorage = () => dispatch => {
+  (
+    dispatch({
+      type: LOGIN,
+      doc: {
+        token: sessionStorage.getItem('token'),
+        user: JSON.parse(sessionStorage.getItem('user'))
+      }
+    })
+  )
+}
 
 export const logout = () => {
   // 删除sessionStorage中的用户信息
@@ -64,4 +75,4 @@ export default auth
 
 // selector
 
-export const getUsername = state => state.auth.user && state.auth.user.username
+export const getUserId = state => state.auth.user && state.auth.user._id

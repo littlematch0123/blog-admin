@@ -8,6 +8,7 @@ import Category from '@/components/Category/Category'
 import Post from '@/components/Post/Post'
 import Recommend from '@/components/Recommend/Recommend'
 import UserList from '@/components/User/UserList'
+import CommentInfo from '@/components/Comment/CommentInfo'
 import { PRIMARY_BG_COLOR } from '@/constants/Colors'
 import HomeHeader from './HomeHeader'
 import HomeShowList from './HomeShowList'
@@ -22,6 +23,7 @@ const Home = ({ wrapHeight }) => (
       <Route path="/posts" component={Post} />
       <Route path="/recommends" component={Recommend} />
       <Route path="/users" component={UserList} />
+      <Route path="/commentsInfo" component={CommentInfo} />
     </Inner>
     <HomeNav />
   </section>

@@ -3,25 +3,38 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import history from '@/utils/history'
-import { Home, Refresh, Search, Exit } from '@/common/BaseImg'
+import { Home, Refresh, Search, Exit, Info } from '@/common/BaseImg'
+import BaseBadge from '@/common/BaseBadge'
 import { logout } from '@/components/Auth/module'
+import { getHaveNotViewedCommentCount } from '@/components/Comment/module'
 
-const HomeMenuList = ({ className, logout }) => (
-  <List className={className} >
+const HomeMenuList = ({ className, logout, commentCount, ...rest }) => (
+  <List className={className} {...rest}>
     <Item onClick={() => { history.push('/') }}><Home />主页</Item>
     <Item onClick={() => { history.go(0) }}><Refresh />刷新</Item>
-    <Item onClick={() => { history.push('/posts/search') }}><Search />搜索</Item>
+    <Item onClick={() => { history.push('/posts/search') }}><Search />文章搜索</Item>
+    {commentCount > 0 &&
+      <Item onClick={() => { history.push('/commentsinfo') }}>
+        <Info />未读评论<BaseBadge>{commentCount}</BaseBadge>
+      </Item>}
     <Item onClick={logout}><Exit />退出</Item>
   </List>
 )
+
 HomeMenuList.propTypes = {
   className: PropTypes.string,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  commentCount: PropTypes.number
 }
 HomeMenuList.defaultProps = {
-  className: ''
+  className: '',
+  commentCount: NaN
 }
-export default connect(null, { logout })(HomeMenuList)
+const mapStateToProps = state => ({
+  commentCount: getHaveNotViewedCommentCount(state)
+})
+
+export default connect(mapStateToProps, { logout })(HomeMenuList)
 
 const List = styled.ul`
   position: fixed;

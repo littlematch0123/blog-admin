@@ -7,12 +7,14 @@ import BaseCard from '@/common/BaseCard'
 import { getCategoryCount } from '@/components/Category/module'
 import { getPostCount } from '@/components/Post/PostsModule'
 import { getUserCount } from '@/components/User/module'
+import { getCommentCount } from '@/components/Comment/module'
 
-const HomeShowList = ({ categoryCount, postCount, userCount, ...rest }) =>
+const HomeShowList = ({ commentCount, categoryCount, postCount, userCount, ...rest }) =>
   (
     <List {...rest}>
       <StyledCard onClick={() => history.push('/posts')}><Title>文章总数</Title><Count>{postCount}</Count></StyledCard>
       <StyledCard onClick={() => history.push('/categories')}><Title>类别总数</Title><Count>{categoryCount}</Count></StyledCard>
+      <StyledCard onClick={() => history.push('/commentsInfo')}><Title>评论总数</Title><Count>{commentCount}</Count></StyledCard>
       <StyledCard onClick={() => history.push('/users')}><Title>推荐总数</Title><Count>8</Count></StyledCard>
       <StyledCard onClick={() => history.push('/users')}><Title>用户总数</Title><Count>{userCount}</Count></StyledCard>
     </List>
@@ -22,17 +24,20 @@ HomeShowList.propTypes = {
   className: PropTypes.string,
   categoryCount: PropTypes.number,
   postCount: PropTypes.number,
+  commentCount: PropTypes.number,
   userCount: PropTypes.number
 }
 HomeShowList.defaultProps = {
   className: '',
   categoryCount: NaN,
   postCount: NaN,
+  commentCount: NaN,
   userCount: NaN
 }
 const mapStateToProps = state => ({
   categoryCount: getCategoryCount(state),
   postCount: getPostCount(state),
+  commentCount: getCommentCount(state),
   userCount: getUserCount(state)
 })
 export default connect(mapStateToProps)(HomeShowList)

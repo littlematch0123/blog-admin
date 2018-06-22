@@ -7,10 +7,11 @@ import { PRIMARY_COLOR, DARK_BG_COLOR } from '@/constants/Colors'
 const HomeNav = ({ className, ...rest }) =>
   (
     <List className={className} {...rest} >
-      <StyledLink activeClassName="styled-nav-active" to="/posts">文章管理</StyledLink>
-      <StyledLink activeClassName="styled-nav-active" to="/categories">类别管理</StyledLink>
-      <StyledLink activeClassName="styled-nav-active" to="/recommends">推荐管理</StyledLink>
-      <StyledLink activeClassName="styled-nav-active" to="/users">用户管理</StyledLink>
+      <StyledLink activeClassName="styled-nav-active" to="/posts">文章</StyledLink>
+      <StyledLink activeClassName="styled-nav-active" to="/categories">类别</StyledLink>
+      <StyledLink activeClassName="styled-nav-active" to="/commentsInfo">评论</StyledLink>
+      <StyledLink activeClassName="styled-nav-active" to="/recommends">推荐</StyledLink>
+      <StyledLink activeClassName="styled-nav-active" to="/users">用户</StyledLink>
     </List>
   )
 

@@ -8,12 +8,16 @@ import { deleteCommentAsync } from './module'
 class DeleteComment extends React.Component {
   onDelete = () => {
     const { deleteCommentAsync, match, location } = this.props
-    const { commentId } = match.params
-    const { BasePostUrl } = location.state
+    const { commentId, postId } = match.params
+    const { state } = location
     deleteCommentAsync({ id: commentId }).then(() => {
-      history.push(`${BasePostUrl}/comments`)
+      if (state) {
+        history.push({ pathname: `/posts/${postId}/comments`, state: { url: state.url } })
+      } else {
+        history.push({ pathname: `/posts/${postId}/comments` })
+      }
     }, () => {
-      history.push(`${BasePostUrl}/comments`)
+      history.push(`/posts/${postId}/comments`)
     })
   }
   render() {
