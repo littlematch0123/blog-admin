@@ -200,6 +200,7 @@ const ButtonBox = styled.span`
   margin-left: 6px;
   border-radius: 4px;
   background: ${DARK_BG_COLOR};
+  cursor: pointer;
 `
 const List = styled.ul`
   height: calc(100% - 50px);
