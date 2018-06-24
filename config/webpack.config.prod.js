@@ -330,11 +330,7 @@ module.exports = {
           handler: 'networkFirst'
         },
         {
-          urlPattern: /\/(posts|categories|recommends|users)/,
-          handler: 'networkFirst'
-        },
-        {
-          urlPattern: '/posts/:id',
+          urlPattern: /\/api/,
           handler: 'networkFirst'
         }
       ]
