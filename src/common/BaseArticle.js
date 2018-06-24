@@ -19,11 +19,12 @@ export default BaseArticle
 const StyledMarkdown = styled(ReactMarkdown)`
   flex: 1;
   margin-top: 20px;
+  overflow-x: hidden;
   overflow-y: auto;
   font-size: 1.1em;
   line-height: 2;
   word-break: break-all;
-
+  -webkit-overflow-scrolling: touch;
   & a {
     text-decoration: underline;
   }
