@@ -19,27 +19,26 @@ import {
 } from './module'
 
 class CategoryForm extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { setCategoriesFilter, match, operate } = nextProps
-    const { isAdded } = prevState
-    setCategoriesFilter(Number(match.params.id)).then(() => {
-      CategoryForm.current = nextProps.category
-    })
-    const { current } = CategoryForm
-    if (operate === 'update' && current && current._id && !isAdded) {
-      const { name, description } = current
-      return { name: name || '', description: description || '', isAdded: true }
-    }
-    return null
-  }
   constructor(props) {
     super(props)
-    this.current = null
     this.state = {
       name: '',
-      description: '',
-      isAdded: false
+      description: ''
     }
+  }
+  componentDidMount() {
+    const { operate, match, setCategoriesFilter } = this.props
+    setCategoriesFilter(Number(match.params.id)).then(() => {
+      if (operate === 'update') {
+        const { category } = this.props
+        const { name, description } = category
+        if (name) {
+          this.setState({ name, description })
+        } else {
+          history.push(`/categories/${getParentNumber(Number(match.params.id))}`)
+        }
+      }
+    })
   }
   onConfirmClick = () => {
     const {
@@ -52,8 +51,7 @@ class CategoryForm extends React.Component {
       hideAlertText
     } = this.props
     const { id } = match.params
-    const { name, description, isAdded } = this.state
-    console.log(isAdded)
+    const { name, description } = this.state
     if (operate === 'add') {
       // 如果要新增的子级类别数字返回假值，则进行报错
       if (Number.isNaN(newChildCategoryNumber)) {
@@ -72,6 +70,7 @@ class CategoryForm extends React.Component {
       })
     }
   }
+
   render() {
     const { name, description } = this.state
     return (
@@ -98,6 +97,7 @@ CategoryForm.propTypes = {
   operate: PropTypes.string.isRequired,
   addCategoryAsync: PropTypes.func.isRequired,
   updateCategoryAsync: PropTypes.func.isRequired,
+  setCategoriesFilter: PropTypes.func.isRequired,
   showAlertText: PropTypes.func.isRequired,
   hideAlertText: PropTypes.func.isRequired,
   newChildCategoryNumber: PropTypes.number,
@@ -106,10 +106,18 @@ CategoryForm.propTypes = {
     params: PropTypes.object,
     path: PropTypes.string,
     url: PropTypes.string
-  }).isRequired
+  }).isRequired,
+  category: PropTypes.shape({
+    _id: PropTypes.string,
+    count: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    posts: PropTypes.array
+  })
 }
 CategoryForm.defaultProps = {
-  newChildCategoryNumber: NaN
+  newChildCategoryNumber: NaN,
+  category: null
 }
 const mapStateToProps = state => ({
   newChildCategoryNumber: getNewChildCategoryNumberByNumber(state),
