@@ -1,7 +1,8 @@
+## 博客后台管理系统
 
 &emsp;&emsp;该项目是基于react全家桶（React、React-router-dom、redux、styled-components）开发的一套博客后台管理系统，用于[前端小站](https://xiaohuochai.cc)的管理，主要功能包括游客浏览、文章管理、类别管理、评论通知、推荐设置和用户管理
 
-## 访问地址
+### 访问地址
 
 &emsp;&emsp;域名：[https://admin.xiaohuochai.cc](https://admin.xiaohuochai.cc)
 
@@ -9,9 +10,9 @@
 
 &emsp;&emsp;或者可以直接扫描二维码访问
 
-![qrCode]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/qrCode.png')
+![qrCode](screenshots/qrCode.png)
 
-## 项目介绍
+### 项目介绍
 
 &emsp;&emsp;采用移动优先的响应式布局，移动端、桌面端均可适配；字体大小使用em单位，桌面端的文字相应变大；移动端大量使用滑屏操作，桌面端通过光标设置、自定义滚动条、回车确定等，提升交互体验
 
@@ -43,10 +44,10 @@
 
 &emsp;&emsp;最终优化评分如下所示
 
-![audits]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/audits.png')
+![audits](screenshots/audits.png)
 
 
-## 功能演示
+### 功能演示
 
 &emsp;&emsp;功能主要包括游客浏览、评论通知、用户管理、推荐设置、文章管理和类别管理
 
@@ -54,21 +55,21 @@
 
 &emsp;&emsp;在没有管理员帐号的情况下，可以点击游客浏览进入后台。但是，游客只有浏览权限，没有操作权限
 
-![visitor]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/visitor.gif')
+![visitor](screenshots/visitor.gif)
 
 
 【评论通知】
 
 &emsp;&emsp;有新评论未查看时，右上角快捷菜单上会出现评论通知的按钮。查看评论后，通知按钮消失
 
-![comment]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/comment.gif')
+![comment](screenshots/comment.gif)
 
 
 【用户管理】
 
 &emsp;&emsp;用户管理包括查看所有用户信息、查看用户点赞情况、查看用户评论情况、按用户名拼音排序、按点赞数排序、按评论数排序以及设置用户状态
 
-![user]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/user.gif')
+![user](screenshots/user.gif)
 
 
 【推荐管理】
@@ -79,14 +80,14 @@
 
 &emsp;&emsp;文章推荐的功能包括更改推荐文章、更改背景图和更改次序
 
-![recommend2]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/recommend2.gif')
+![recommend2](screenshots/recommend2.gif)
 
 
 &emsp;&emsp;2、专题推荐
 
 &emsp;&emsp;专题推荐的功能包括更改推荐专题、更改专题说明和更改次序
 
-![recommend1]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/recommend1.gif')
+![recommend1](screenshots/recommend1.gif)
 
 【文章管理】
 
@@ -96,40 +97,40 @@
 
 &emsp;&emsp;初始页显示全部文章，设置类别后，只显示筛选后的文章，文章查阅完成后，可返回文章筛选页
 
-![post1]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/post1.gif')
+![post1](screenshots/post1.gif)
 
 &emsp;&emsp;2、文章搜索
 
 &emsp;&emsp;初始页只显示搜索框，设置搜索词后，显示出相关文章，但每次只显示16篇，下拉刷新后，可继续显示。文章查阅完成后，可返回文章搜索页
 
-![post2]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/post2.gif')
+![post2](screenshots/post2.gif)
 
 
 &emsp;&emsp;3、新建文章
 
-![post3]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/post3.gif')
+![post3](screenshots/post3.gif)
 
 
 &emsp;&emsp;4、编辑文章
 
-![post4]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/post4.gif')
+![post4](screenshots/post4.gif)
 
 &emsp;&emsp;5、设置配图
 
-![post5]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/post5.gif')
+![post5](screenshots/post5.gif)
 
 
 &emsp;&emsp;6、查看点赞和评论并删除文章
 
-![post6]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/post6.gif')
+![post6](screenshots/post6.gif)
 
 【类别管理】
 
 &emsp;&emsp;类别管理包括查看类别、添加类别、编辑类别、删除类别
 
-![category]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/category.gif')
+![category](screenshots/category.gif)
 
-## 目录结构
+### 目录结构
 
 &emsp;&emsp;src目录下，包括assets(静态资源)、common(公共组件)、components(功能组件)、constants(常量配置)、store(redux)和utils(工具方法)这6个目录
 
@@ -212,7 +213,7 @@ LinkageSelector.js // 联动选择组件
 ```
 
 
-## 整体思路
+### 整体思路
 
 【全屏布局】
 
@@ -409,7 +410,7 @@ export default connect(mapStateToProps, { setCategoriesFilter })(CategoryForm)
 ```
 
 
-## 项目优化
+### 项目优化
 
 【子页面刷新】
 
@@ -541,7 +542,7 @@ export const throttle = (fn, wait = 100) => function func(...args) {
 ```
 
 
-## 功能实现
+### 功能实现
 
 【登录设置】
 
@@ -641,7 +642,7 @@ return new RegExp(searchText.replace(/[[(){}^$|?*+.-\\]/g, '\\$&'), 'ig')
 ```
 &emsp;&emsp;此时的-被识别为范围间隔符，相当于.到\之间的字符，正好包括了所有的大写字母，所以。一定要把-放在最后
 
-![reg]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/reg.gif')
+![reg](screenshots/reg.gif)
 
 
 【滑屏实现】
@@ -786,7 +787,7 @@ import  history  from '@/utils/history'
 history.push('/')
 ```
 
-## 兼容处理
+### 兼容处理
 
 【虚拟键盘】
 
@@ -796,7 +797,7 @@ history.push('/')
 ```
 &emsp;&emsp;bug重现如下：
 
-![bug1]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/bug1.gif')
+![bug1](screenshots/bug1.gif)
 
 &emsp;&emsp;所以，要将包含input域的页面高度设为固定
 
@@ -833,7 +834,7 @@ const BaseInput = ({ value, onChange, ...rest }) =>
 
 &emsp;&emsp;IOS下，input获取焦点时会放大
 
-![bug2]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/bug2.gif')
+![bug2](screenshots/bug2.gif)
 
 &emsp;&emsp;meta设置user-scalable=no，可取消放大效果
 
@@ -844,7 +845,7 @@ const BaseInput = ({ value, onChange, ...rest }) =>
 
 &emsp;&emsp;IOS下，input域只显示底边框时，会出现底边圆角效果
 
-![bug3]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/bug3.gif')
+![bug3](screenshots/bug3.gif)
 
 &emsp;&emsp;设置border-radius:0即可
 
@@ -865,7 +866,7 @@ outline: none
 
 &emsp;&emsp;bug重现如下：
 
-![bug4]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/bug4.gif')
+![bug4](screenshots/bug4.gif)
 
 &emsp;&emsp;可以通过-webkt-tap-hightlight-color属性的设置，取消点击时出现的背景效果
 ```
@@ -879,7 +880,7 @@ outline: none
 
 &emsp;&emsp;下列动画中，滑动到代码片段时，由于代码本身具有滚动条，则发生滚动无效的情况
 
-![bug5]('https://github.com/littlematch0123/blog-admin/blob/master/screenshots/bug5.gif')
+![bug5](screenshots/bug5.gif)
 
 &emsp;&emsp;通过在该元素上设置overflow-scrolling属性为touch即可解决
 ```
