@@ -5,6 +5,7 @@ import React from 'react'
 // visibility
 // visibilityOff
 // exit
+// reception
 // home
 // search
 // refresh
@@ -50,6 +51,13 @@ export const Visibility = props => (
 )
 
 export const Exit = props => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" {...props}>
+    <path fill="none" d="M0 0h24v24H0z" />
+    <path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z" />
+  </svg>
+)
+
+export const Reception = props => (
   <svg height={24} viewBox="0 0 24 24" width={24} {...props}>
     <path d="M0 0h24v24H0z" fill="none" />
     <path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5a2 2 0 0 0-2 2v4h2V5h14v14H5v-4H3v4a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import history from '@/utils/history'
-import { Home, Refresh, Search, Exit, Info } from '@/common/BaseImg'
+import { Home, Refresh, Search, Exit, Info, Reception } from '@/common/BaseImg'
 import BaseBadge from '@/common/BaseBadge'
 import { logout } from '@/components/Auth/module'
 import { getHaveNotViewedCommentCount } from '@/components/Comment/module'
@@ -17,6 +17,7 @@ const HomeMenuList = ({ className, logout, commentCount, ...rest }) => (
       <Item onClick={() => { history.push('/commentsinfo') }}>
         <Info />未读评论<BaseBadge>{commentCount}</BaseBadge>
       </Item>}
+    <Item onClick={() => { window.location.href = 'https://xiaohuochai.cc' }}><Reception />去往前台</Item>
     <Item onClick={logout}><Exit />退出</Item>
   </List>
 )
