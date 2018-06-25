@@ -19,21 +19,26 @@ import {
 } from './module'
 
 class CategoryForm extends React.Component {
-  static getDerivedStateFromProps(nextProps) {
-    const { setCategoriesFilter, match, operate, category } = nextProps
-    const { id } = match.params
-    setCategoriesFilter(Number(id))
-    if (operate === 'update' && category) {
-      const { name, description } = category
-      return { name, description: description || '' }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { setCategoriesFilter, match, operate } = nextProps
+    const { isAdded } = prevState
+    setCategoriesFilter(Number(match.params.id)).then(() => {
+      CategoryForm.current = nextProps.category
+    })
+    const { current } = CategoryForm
+    if (operate === 'update' && current && current._id && !isAdded) {
+      const { name, description } = current
+      return { name: name || '', description: description || '', isAdded: true }
     }
     return null
   }
   constructor(props) {
     super(props)
+    this.current = null
     this.state = {
       name: '',
-      description: ''
+      description: '',
+      isAdded: false
     }
   }
   onConfirmClick = () => {
@@ -47,7 +52,8 @@ class CategoryForm extends React.Component {
       hideAlertText
     } = this.props
     const { id } = match.params
-    const { name, description } = this.state
+    const { name, description, isAdded } = this.state
+    console.log(isAdded)
     if (operate === 'add') {
       // 如果要新增的子级类别数字返回假值，则进行报错
       if (Number.isNaN(newChildCategoryNumber)) {
