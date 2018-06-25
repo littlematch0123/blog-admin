@@ -26,6 +26,7 @@ class CategoryForm extends React.Component {
       description: ''
     }
   }
+
   componentDidMount() {
     const { operate, match, setCategoriesFilter } = this.props
     setCategoriesFilter(Number(match.params.id)).then(() => {
@@ -70,7 +71,6 @@ class CategoryForm extends React.Component {
       })
     }
   }
-
   render() {
     const { name, description } = this.state
     return (

@@ -6,4 +6,3 @@ export const TRANSPARENT_BG_COLOR = 'rgba(7, 17, 27, .4)'
 export const DARK_BG_COLOR = '#f5f5f5'
 export const PRIMARY_LINE_COLOR = '#eee'
 export const DARK_LINE_COLOR = '#ebedf0'
-

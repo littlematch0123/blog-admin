@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { PRIMARY_LINE_COLOR } from '@/constants/Colors'
-import BaseButton from './BaseButton'
 
 const BaseFilterList = ({ datas, ...rest }) =>
   (
