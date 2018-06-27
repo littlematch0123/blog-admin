@@ -35,14 +35,14 @@ class UserDesk extends React.Component {
             key={t._id}
             onClick={() => { history.push({ pathname: `/posts/${t.post._id}`, state: { url: location.pathname } }) }}
           >
-            <Time>{new Date(t.createdAt).toLocaleDateString()}</Time>
+            <time>{(t.createdAt).match(/^.*(?=T)/)[0]}</time>
             <Title>{t.post.title}</Title>
           </ShowItem>
         )
       }
       return (
         <ShowItem key={t._id}>
-          <Time>{new Date(t.createdAt).toLocaleDateString()}</Time>
+          <time>{(t.createdAt).match(/^.*(?=T)/)[0]}</time>
           <ExtendedTitle>该文章已删除</ExtendedTitle>
         </ShowItem>
       )
@@ -129,9 +129,7 @@ const ShowItem = styled.li`
     background: ${PRIMARY_BG_COLOR};
   }
 `
-const Time = styled.time`
-  width: 60px;
-`
+
 const Title = styled.span`
   flex: 1;
   margin-left: 10px;

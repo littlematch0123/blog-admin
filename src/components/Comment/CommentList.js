@@ -70,7 +70,7 @@ class CommentList extends React.Component {
                   <AvatarBox>
                     {t.user ? <BaseAvatar>{t.user.username}</BaseAvatar>
                       : <StyledAvatar>删</StyledAvatar>}
-                    <Time>{new Date(t.createdAt).toLocaleDateString()}</Time>
+                    <Time>{(t.createdAt).match(/^.*(?=T)/)[0]}</Time>
                   </AvatarBox>
                   <BtnBox>
                     <StyledBtn onClick={() => this.onUpdateComment(t, BasePostUrl)}>编辑</StyledBtn>
